@@ -1,0 +1,25 @@
+a {
+  cursor: pointer;
+}
+.carousel-item {
+  display: block;
+}
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.upload-btn {
+  width: 100%;
+}
+.custom-file-label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.required-label::after {
+  content: "*";
+  color: red;
+}
