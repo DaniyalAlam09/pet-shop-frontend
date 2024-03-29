@@ -15,12 +15,12 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       const existingItem = state.data.find(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
 
       if (existingItem) {
         const tempCart = state.data.map((item) => {
-          if (item.id === action.payload.id) {
+          if (item._id === action.payload._id) {
             let newQty = item.quantity + action.payload.quantity;
             let newTotalPrice = newQty * item.price;
             return {
@@ -40,8 +40,9 @@ const cartSlice = createSlice({
       }
     },
     updateQuantity: (state, action) => {
+      console.log("action.payload", action.payload)
       const { id, quantity } = action.payload;
-      const itemToUpdate = state.data.find((item) => item.id === id);
+      const itemToUpdate = state.data.find((item) => item._id === id);
 
       if (itemToUpdate) {
         const validQuantity = Math.max(quantity || 1, 1);
@@ -52,7 +53,7 @@ const cartSlice = createSlice({
 
     removeItem(state, action) {
       const tempCart = state.data.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item._id !== action.payload.id
       );
       state.data = tempCart;
       storeInLocalStorage(state.data);

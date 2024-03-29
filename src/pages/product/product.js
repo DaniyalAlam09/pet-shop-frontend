@@ -60,7 +60,7 @@ function ProductPage() {
                                             margin: "auto",
                                         }}
                                         class="rounded-4 fit"
-                                        src="https://wallpapercave.com/wp/wp8240864.jpg"
+                                        src={product?.product_image ? ('http://localhost:4000/' + product.product_image?.replace('public\\', '').replace(/\\/g, '/')) : "../assets/img/carousel-1.jpg"}
                                     />
                                 </a>
                             </div>

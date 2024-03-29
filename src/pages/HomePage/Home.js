@@ -12,7 +12,8 @@ export default function Home() {
       <Banner />
       <Features />
       <Categories />
-      <Product />
+      <Product productType={'featured'} />
+      <Product productType={'sort'} />
       <Offers />
       <Vendor />
     </>

@@ -64,7 +64,7 @@ export default function Cart() {
                     <tr>
                       <td className="align-middle">
                         <img
-                          src='../assets/img/carousel-1.jpg'
+                          src={cartProduct?.product_image ? ('http://localhost:4000/' + cartProduct.product_image?.replace('public\\', '').replace(/\\/g, '/')) : "../assets/img/carousel-1.jpg"}
                           alt="img"
                           style={{ width: "50px" }}
                         />{" "}
@@ -81,7 +81,7 @@ export default function Cart() {
                               className="btn btn-sm btn-primary btn-minus"
                               onClick={() =>
                                 decreaseQty(
-                                  cartProduct.id,
+                                  cartProduct._id,
                                   cartProduct.quantity
                                 )
                               }
@@ -99,7 +99,7 @@ export default function Cart() {
                               className="btn btn-sm btn-primary btn-plus"
                               onClick={() =>
                                 increaseQty(
-                                  cartProduct.id,
+                                  cartProduct._id,
                                   cartProduct.quantity
                                 )
                               }
@@ -113,7 +113,7 @@ export default function Cart() {
                       <td className="align-middle">
                         <button
                           className="btn btn-sm btn-danger"
-                          onClick={() => handleRemoveItem(cartProduct.id)}
+                          onClick={() => handleRemoveItem(cartProduct._id)}
                         >
                           <i className="fa fa-times"></i>
                         </button>
