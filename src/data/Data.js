@@ -90,10 +90,7 @@ export const nav = [
     path: "/contact",
     text: "Contact",
   },
-  {
-    path: "/seller-login",
-    text: "Seller Login",
-  },
+
 ];
 
 export const topdropdown = [

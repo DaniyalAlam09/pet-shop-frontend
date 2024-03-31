@@ -15,8 +15,9 @@ function Login() {
             });
             // Handle successful login, such as storing the token in local storage
             toast.success("Login successful");
-            localStorage.setItem("user", JSON.stringify(response.data.user));
-            window.location.reload()
+            localStorage.setItem("user", JSON.stringify(response?.data?.user));
+            localStorage.setItem('isAdmin', false);
+            window.location.replace('../user/profile')
         } catch (error) {
             // Handle login error, such as displaying an error message
             toast.error(error.response.data.message);

@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { nav, topdropdown } from "../data/Data";
+import { useNavigate } from 'react-router-dom';
 
 export default function TopBar() {
+  const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+  const isAdmin = localStorage.getItem('isAdmin')
+  const navigate = useNavigate()
   return (
     <>
       <div className="container-fluid">
@@ -14,26 +18,46 @@ export default function TopBar() {
                   {top.text}
                 </Link>
               ))}
+              {!isAdmin && (
+                <Link to='/seller-login' className="text-body mr-3" >
+                  Seller Login
+                </Link>
+              )}
             </div>
           </div>
           <div className="col-lg-6 text-center text-lg-right">
             <div className="d-inline-flex align-items-center">
-              <Link to='/login' className="text-body mr-3" >
-                Login
-              </Link>
-              <Link to='/register' className="text-body mr-3" >
-                Register
-              </Link>
-              {topdropdown.map((btn, key) => (
-                <div className="btn-group" key={key}>
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-light dropdown-toggle"
-                  >
-                    {btn.btn}
-                  </button>
-                </div>
-              ))}
+              {user ? (
+                <>
+                  {/* {topdropdown.map((btn, key) => ( */}
+                  <div className="btn-group">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-light"
+                      onClick={() => {
+                        navigate('../user/profile')
+                      }}
+                    >
+                      {user.firstName}
+                    </button>
+                  </div>
+                  {/* ))} */}
+
+                </>
+              ) : (
+                <>
+
+                  <Link to='/login' className="text-body mr-3" >
+                    Login
+                  </Link>
+                  <Link to='/register' className="text-body mr-3" >
+                    Register
+                  </Link>
+                </>
+
+              )}
+
+
             </div>
             <div className="d-inline-flex align-items-center d-block d-lg-none">
               <a href="" className="btn px-0 ml-2">

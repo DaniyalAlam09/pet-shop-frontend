@@ -12,6 +12,8 @@ function SellerLogin() {
         if (username === 'admin' && password === 'admin') {
             // Set admin flag in localStorage
             localStorage.setItem('isAdmin', true);
+            localStorage.setItem('user', null);
+            localStorage.setItem('token', null);
             // Reload the page
             window.location.href = '/admin/product-upload';
         } else {

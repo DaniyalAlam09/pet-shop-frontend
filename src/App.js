@@ -16,6 +16,9 @@ import ProductPage from "./pages/product/product";
 import ProductUpload from "./pages/admin/ProductUpload";
 import Homex from "./pages/admin/Homex";
 import SellerLogin from "./pages/login/SellerLogin";
+import Homey from "./pages/User/Homey";
+import Profile from "./pages/User/Profile";
+import Order from "./pages/User/Order";
 function App() {
   return (
     <div>
@@ -48,6 +51,11 @@ function App() {
             <Route path="edit-product/:id" element={<ProductUpload />} />
             <Route path="my-orders" element={<ProductUpload />} />
           </Route>
+          <Route path="user" element={<Homey />}>
+            <Route path="profile" element={<Profile />} />
+            <Route path="orders" element={<Order />} />
+          </Route>
+
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
