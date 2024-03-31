@@ -330,80 +330,37 @@ export const sidebar = [
     total_quantity: "1000",
     subItem: [
       {
+        id: 1,
+
         variety: "0-100",
         quantity: "150",
       },
       {
+        id: 2,
+
         variety: "100-200",
         quantity: "150",
       },
       {
+        id: 3,
         variety: "200-300",
         quantity: "150",
       },
       {
+        id: 4,
+
         variety: "300-400",
         quantity: "150",
       },
       {
+        id: 5,
         variety: "400-500",
         quantity: "150",
       },
-    ],
-  },
-  {
-    id: 2,
-    header: "Filter By Color",
-    all: "All Color",
-    total_quantity: "1000",
-    subItem: [
       {
-        variety: "Black",
-        quantity: "30",
-      },
-      {
-        variety: "White",
-        quantity: "11",
-      },
-      {
-        variety: "Green",
-        quantity: "20",
-      },
-      {
-        variety: "Red",
-        quantity: "10",
-      },
-      {
-        variety: "Yellow",
-        quantity: "15",
-      },
-    ],
-  },
-  {
-    id: 3,
-    header: "Filter By Size",
-    all: "All Size",
-    total_quantity: "1000",
-    subItem: [
-      {
-        variety: "XS",
-        quantity: "60",
-      },
-      {
-        variety: "S",
-        quantity: "19",
-      },
-      {
-        variety: "L",
+        id: 6,
+        variety: "500-100000",
         quantity: "150",
-      },
-      {
-        variety: "XL",
-        quantity: "16",
-      },
-      {
-        variety: "XXL",
-        quantity: "15",
       },
     ],
   },

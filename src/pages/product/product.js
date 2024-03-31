@@ -27,7 +27,6 @@ function ProductPage() {
         axios
             .get(`http://localhost:4000/shops/${id}`)
             .then((res) => {
-                console.log("id", res);
                 setProduct(res.data);
             })
             .catch((err) => {

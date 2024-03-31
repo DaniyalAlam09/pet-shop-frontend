@@ -6,25 +6,31 @@ import { toast } from "react-toastify";
 function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [address, setAddress] = useState("");
+    const [phoneNo, setPhoneNo] = useState("");
+    const [city, setCity] = useState("");
 
-    const handleLRegister = async () => {
+    const handleRegister = async () => {
         try {
             const response = await axios.post(
                 "http://localhost:4000/users/register",
-                { email, password }
+                { email, password, firstName, lastName, address, phoneNo, city }
             );
-            // Handle successful login, such as storing the token in local storage
-            console.log("Login successful:", response.data);
+            toast.success("Registration successful");
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            window.location.reload()
         } catch (error) {
-            // Handle login error, such as displaying an error message
             toast.error(error.response.data.message);
-            console.error("Login failed:", error.response.data);
+            console.error("Registration failed:", error.response.data);
         }
     };
+
     return (
-        <section className="vh-100">
-            <div className="container py-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
+        <section className="">
+            <div className="container py-5">
+                <div className="row d-flex justify-content-center align-items-center">
                     <div className="col col-xl-10">
                         <div className="card" style={{ borderRadius: "1rem" }}>
                             <div className="row g-0">
@@ -45,7 +51,7 @@ function Register() {
                                         <form
                                             onSubmit={(e) => {
                                                 e.preventDefault();
-                                                handleLRegister();
+                                                handleRegister();
                                             }}
                                         >
                                             <h5
@@ -60,10 +66,10 @@ function Register() {
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
                                                     type="email"
-                                                    id="form2Example17"
+                                                    id="email"
                                                     className="form-control form-control-lg"
                                                 />
-                                                <label className="form-label" for="form2Example17">
+                                                <label className="form-label" htmlFor="email">
                                                     Email address
                                                 </label>
                                             </div>
@@ -73,13 +79,67 @@ function Register() {
                                                     value={password}
                                                     onChange={(e) => setPassword(e.target.value)}
                                                     type="password"
-                                                    id="form2Example27"
+                                                    id="password"
                                                     className="form-control form-control-lg"
                                                 />
-                                                <label className="form-label" for="form2Example27">
+                                                <label className="form-label" htmlFor="password">
                                                     Password
                                                 </label>
                                             </div>
+
+                                            {/* Additional Fields */}
+
+                                            <div className="form-outline mb-4">
+                                                <input
+                                                    value={firstName}
+                                                    onChange={(e) => setFirstName(e.target.value)}
+                                                    type="text"
+                                                    id="firstName"
+                                                    className="form-control form-control-lg"
+                                                />
+                                                <label className="form-label" htmlFor="firstName">
+                                                    First Name
+                                                </label>
+                                            </div>
+                                            <div className="form-outline mb-4">
+                                                <input
+                                                    value={lastName}
+                                                    onChange={(e) => setLastName(e.target.value)}
+                                                    type="text"
+                                                    id="lastName"
+                                                    className="form-control form-control-lg"
+                                                />
+                                                <label className="form-label" htmlFor="firstName">
+                                                    Last Name
+                                                </label>
+                                            </div>
+                                            <div className="form-outline mb-4">
+                                                <input
+                                                    value={address}
+                                                    onChange={(e) => setAddress(e.target.value)}
+                                                    type="text"
+                                                    id="address"
+                                                    className="form-control form-control-lg"
+                                                />
+                                                <label className="form-label" htmlFor="firstName">
+                                                    Address
+                                                </label>
+                                            </div>
+
+                                            <div className="form-outline mb-4">
+                                                <input
+                                                    value={phoneNo}
+                                                    onChange={(e) => setPhoneNo(e.target.value)}
+                                                    type="text"
+                                                    id="phoneNo"
+                                                    className="form-control form-control-lg"
+                                                />
+                                                <label className="form-label" htmlFor="firstName">
+                                                    Phone no
+                                                </label>
+                                            </div>
+
+                                            {/* Repeat the above pattern for the other fields */}
 
                                             <div className="pt-1 mb-4">
                                                 <button
@@ -94,7 +154,7 @@ function Register() {
                                                 s
                                                 style={{ color: "#393f81" }}
                                             >
-                                                Have account?{" "}
+                                                Have an account?{" "}
                                                 <Link to="/login" style={{ color: "#393f81" }}>
                                                     Sign in here
                                                 </Link>

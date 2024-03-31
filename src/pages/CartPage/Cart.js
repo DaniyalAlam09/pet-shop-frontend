@@ -38,7 +38,6 @@ export default function Cart() {
   const emptyCartMsg = (
     <h4 className="container text-center p-4">Your Cart is Empty</h4>
   );
-  console.log(cartProducts)
 
   return (
     <>

@@ -38,7 +38,7 @@ export default function Product({ productType }) {
   useEffect(() => {
     getProducts();
   }, []);
-  console.log("d", products[6]?.product_image)
+
   return (
 
     <>
@@ -92,7 +92,6 @@ export default function Product({ productType }) {
                 </div>
               </div>
             )
-
           })}
         </div>
       </div >

@@ -42,14 +42,12 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/about" element={<About />} />
-
           <Route path="admin" element={<Homex />}>
             <Route path="product-upload" element={<ProductUpload />} />
             <Route path="my-products" element={<ProductUpload />} />
             <Route path="edit-product/:id" element={<ProductUpload />} />
             <Route path="my-orders" element={<ProductUpload />} />
           </Route>
-
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

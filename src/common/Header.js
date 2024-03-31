@@ -9,7 +9,6 @@ import { nav } from "../data/Data";
 export default function Header() {
   const dispatch = useDispatch();
   const { totalItems } = useSelector((state) => state.cart);
-  // console.log(totalItems);
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     dispatch(getCartTotal);

@@ -8,7 +8,6 @@ export const CatagoriesProvider = ({ children }) => {
         axios
             .get("http://localhost:4000/category")
             .then((res) => {
-                console.log("res", res)
                 setCatagories(res.data.categories);
             })
             .catch((err) => {

@@ -14,7 +14,9 @@ function Login() {
                 password,
             });
             // Handle successful login, such as storing the token in local storage
-            console.log("Login successful:", response.data);
+            toast.success("Login successful");
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            window.location.reload()
         } catch (error) {
             // Handle login error, such as displaying an error message
             toast.error(error.response.data.message);
@@ -23,9 +25,9 @@ function Login() {
     };
 
     return (
-        <section className="vh-100">
-            <div className="container py-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
+        <section className="">
+            <div className="container py-5 ">
+                <div className="row d-flex justify-content-center align-items-center">
                     <div className="col col-xl-10">
                         <div className="card" style={{ borderRadius: "1rem" }}>
                             <div className="row g-0">

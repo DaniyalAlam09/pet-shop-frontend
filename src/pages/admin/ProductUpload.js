@@ -75,7 +75,6 @@ function ProductUpload() {
                 }
             });
             toast.success('Product Uploaded');
-            console.log('Response:', response.data);
             // Handle success
         } catch (error) {
             console.error('Error:', error);

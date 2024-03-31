@@ -20,8 +20,8 @@ function SellerLogin() {
     }
 
     return (
-        <div>
-            <section className="vh-100">
+        <div className='container'>
+            <section className="">
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-sm-6 text-black">
@@ -43,7 +43,7 @@ function SellerLogin() {
                             </div>
                         </div>
                         <div className="col-sm-6 px-0 d-none d-sm-block">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp" alt="Login image" className="w-100 vh-100" style={{ objectFit: "cover", objectPosition: "left" }} />
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource124/v4/e3/e5/7b/e3e57b55-f723-a6c4-618b-bd895608424d/6e673855-2305-461f-8d55-5349b5e644f8_Simulator_Screen_Shot_-_iPad_Pro__U002812.9-inch_U0029__U00282nd_generation_U0029_-_2020-07-16_at_20.27.57.png/576x768bb.png" alt="Login image" className="w-100 vh-100" style={{ objectFit: "cover", objectPosition: "left" }} />
                         </div>
                     </div>
                 </div>
