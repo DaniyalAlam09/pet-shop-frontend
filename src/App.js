@@ -19,6 +19,7 @@ import SellerLogin from "./pages/login/SellerLogin";
 import Homey from "./pages/User/Homey";
 import Profile from "./pages/User/Profile";
 import Order from "./pages/User/Order";
+import ProductTable from "./pages/admin/ProductTable";
 function App() {
   return (
     <div>
@@ -47,7 +48,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="admin" element={<Homex />}>
             <Route path="product-upload" element={<ProductUpload />} />
-            <Route path="my-products" element={<ProductUpload />} />
+            <Route path="my-products" element={<ProductTable />} />
             <Route path="edit-product/:id" element={<ProductUpload />} />
             <Route path="my-orders" element={<ProductUpload />} />
           </Route>

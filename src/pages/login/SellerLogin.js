@@ -15,7 +15,7 @@ function SellerLogin() {
             localStorage.setItem('user', null);
             localStorage.setItem('token', null);
             // Reload the page
-            window.location.href = '/admin/product-upload';
+            window.location.href = '/admin/my-products';
         } else {
             toast.error('Invalid username or password');
         }

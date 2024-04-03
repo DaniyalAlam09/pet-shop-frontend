@@ -27,6 +27,10 @@ const SideBarCusomer = ({ children }) => {
         },
     ];
     const handleLogout = () => {
+        // Clear local storage
+        localStorage.clear();
+        // Redirect to home page
+        window.location.replace('/')
 
     };
     return (
@@ -40,7 +44,7 @@ const SideBarCusomer = ({ children }) => {
                         <i class="fa-sharp fa-regular fa-bars-staggered"></i>
                     </div>
                 </div>
-                {menuItem.map((item, index) => (
+                {menuItem.slice(0, menuItem.length - 1).map((item, index) => (
                     <NavLink
                         to={item.path}
                         key={index}
@@ -56,6 +60,12 @@ const SideBarCusomer = ({ children }) => {
                         </div>
                     </NavLink>
                 ))}
+                <div onClick={handleLogout} className="link">
+                    <div className="icon">{menuItem[2].icon}</div>
+                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text">
+                        {menuItem[2].name}
+                    </div>
+                </div>
             </div>
             <main>{children}</main>
         </div>

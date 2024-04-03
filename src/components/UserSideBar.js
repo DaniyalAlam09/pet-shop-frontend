@@ -10,28 +10,32 @@ const Sidebar = ({ children }) => {
         {
             path: "my-products",
             name: "My Products",
-            icon: <i class="fa-brands fa-product-hunt"></i>,
+            icon: <i className="fa-brands fa-product-hunt"></i>,
         },
         {
             path: "my-orders",
             name: "Orders",
-            icon: <i class="fa-solid fa-basket-shopping-minus"></i>,
+            icon: <i className="fa-solid fa-basket-shopping-minus"></i>,
         },
         {
             path: "product-upload",
             name: "Upload Product",
-            icon: <i class="fa-solid fa-upload"></i>,
+            icon: <i className="fa-solid fa-upload"></i>,
         },
-
         {
             path: "logout",
             name: "Logout",
-            icon: <i class="fa-duotone fa-arrow-right-from-bracket"></i>,
+            icon: <i className="fa-duotone fa-arrow-right-from-bracket"></i>,
         },
     ];
-    const handleLogout = () => {
 
+    const handleLogout = () => {
+        // Clear local storage
+        localStorage.clear();
+        // Redirect to home page
+        window.location.replace('/')
     };
+
     return (
         <div className="contain">
             <div style={{ width: isOpen ? "200px" : "50px" }} className="sidebar">
@@ -40,15 +44,15 @@ const Sidebar = ({ children }) => {
                         PET SHOP
                     </h1>
                     <div style={{ marginLeft: isOpen ? "50px" : "0px" }} className="bars">
-                        <i class="fa-sharp fa-regular fa-bars-staggered"></i>
+                        <i className="fa-sharp fa-regular fa-bars-staggered"></i>
                     </div>
                 </div>
-                {menuItem.map((item, index) => (
+                {menuItem.slice(0, menuItem.length - 1).map((item, index) => (
                     <NavLink
                         to={item.path}
                         key={index}
                         className="link"
-                        activeclassName="active"
+                        activeClassName="active"
                     >
                         <div className="icon">{item.icon}</div>
                         <div
@@ -59,6 +63,12 @@ const Sidebar = ({ children }) => {
                         </div>
                     </NavLink>
                 ))}
+                <div onClick={handleLogout} className="link">
+                    <div className="icon">{menuItem[3].icon}</div>
+                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text">
+                        {menuItem[3].name}
+                    </div>
+                </div>
             </div>
             <main>{children}</main>
         </div>
