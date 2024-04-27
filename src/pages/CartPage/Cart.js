@@ -264,7 +264,12 @@ export default function Cart() {
                     <h5>{totalAmounts + deliveryCharge}</h5>
                   </div>
                   <button onClick={() => {
-                    setConfirmationModal(true)
+                    if (user) {
+
+                      setConfirmationModal(true)
+                    } else {
+                      toast.error('Please Login first')
+                    }
                   }} className="btn btn-block btn-primary font-weight-bold my-3 py-3">
                     Proceed To Checkout
                   </button>

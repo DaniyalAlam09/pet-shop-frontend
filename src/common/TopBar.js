@@ -18,47 +18,49 @@ export default function TopBar() {
                   {top.text}
                 </Link>
               ))}
-              {!isAdmin && (
+              {(!isAdmin && !user) ? (
                 <Link to='/seller-login' className="text-body mr-3" >
                   Seller Login
-                </Link>
-              )}
+                </Link >
+              ) : <Link className="text-body mr-3" to='..//admin/my-products'>
+                Profile
+              </Link>}
             </div>
           </div>
           <div className="col-lg-6 text-center text-lg-right">
-            <div className="d-inline-flex align-items-center">
-              {user ? (
-                <>
-                  {/* {topdropdown.map((btn, key) => ( */}
-                  <div className="btn-group">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-light"
-                      onClick={() => {
-                        navigate('../user/profile')
-                      }}
-                    >
-                      {user.firstName}
-                    </button>
-                  </div>
-                  {/* ))} */}
+            {!isAdmin && ((
+              <div className="d-inline-flex align-items-center">
+                {user ? (
+                  <>
+                    {/* {topdropdown.map((btn, key) => ( */}
+                    <div className="btn-group">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-light"
+                        onClick={() => {
+                          navigate('../user/profile')
+                        }}
+                      >
+                        {user.firstName}
+                      </button>
+                    </div>
+                    {/* ))} */}
 
-                </>
-              ) : (
-                <>
-
-                  <Link to='/login' className="text-body mr-3" >
-                    Login
-                  </Link>
-                  <Link to='/register' className="text-body mr-3" >
-                    Register
-                  </Link>
-                </>
-
-              )}
+                  </>
+                ) : (
+                  <>
+                    <Link to='/login' className="text-body mr-3" >
+                      Login
+                    </Link>
+                    <Link to='/register' className="text-body mr-3" >
+                      Register
+                    </Link>
+                  </>
+                )}
 
 
-            </div>
+              </div>
+            ))}
             <div className="d-inline-flex align-items-center d-block d-lg-none">
               <a href="" className="btn px-0 ml-2">
                 <i className="fas fa-heart text-dark"></i>

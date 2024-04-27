@@ -27,6 +27,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, getCartTotal } from "./redux/CartSlice";
+import ManageOrders from "./pages/admin/AllOrders";
 const promise = loadStripe(
   "pk_test_51MO12UBGAZ3oqEpyMdmmANOskndSrDKAKjLGmH0Nz2zG5M8yJyuW2b02hm5XSGbJd6kWPDiUlYUaNIPTPmMSV8WN003P00H5U9"
 );
@@ -81,7 +82,7 @@ function App() {
             <Route path="product-upload" element={<ProductUpload />} />
             <Route path="my-products" element={<ProductTable />} />
             <Route path="edit-product/:id" element={<ProductUpload />} />
-            <Route path="my-orders" element={<ProductUpload />} />
+            <Route path="my-orders" element={<ManageOrders />} />
           </Route>
           <Route path="user" element={<Homey />}>
             <Route path="profile" element={<Profile />} />
