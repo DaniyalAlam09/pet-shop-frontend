@@ -10233,3 +10233,38 @@ h6 {
 .nav-user-dropdown .dropdown-item:hover {
   background-color: #f7f7fb;
 }
+.deleteUserModal-content.popup-content {
+  max-width: 500px;
+  width: 100%;
+  padding: 40px 15px;
+}
+.textCenter {
+  text-align: center;
+}
+
+@media (min-width: 576px) {
+  .userForms .btnWrap {
+    flex-wrap: nowrap;
+  }
+
+  .userForms .btnWrap .btn {
+    width: 50%;
+  }
+
+  .deleteUserModal-content.popup-content {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .userForms .dbCol.dbColLg50 {
+    max-width: 100%;
+    flex: 0 0 50%;
+  }
+
+  .deleteUserModal-content.popup-content {
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+}

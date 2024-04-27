@@ -5,12 +5,15 @@ import Slider from "react-slick";
 export default function Banner() {
   const settings = [
     {
-      dots: true,
+      // dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       fade: true,
+      autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 2000,
     },
   ];
   return (

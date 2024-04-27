@@ -1,5 +1,7 @@
 import "./css/style.css";
 import "./App.css";
+import 'reactjs-popup/dist/index.css';
+
 import Header from "./common/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Cart, Home, Shop } from "./pages";
@@ -20,7 +22,29 @@ import Homey from "./pages/User/Homey";
 import Profile from "./pages/User/Profile";
 import Order from "./pages/User/Order";
 import ProductTable from "./pages/admin/ProductTable";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart, getCartTotal } from "./redux/CartSlice";
+const promise = loadStripe(
+  "pk_test_51MO12UBGAZ3oqEpyMdmmANOskndSrDKAKjLGmH0Nz2zG5M8yJyuW2b02hm5XSGbJd6kWPDiUlYUaNIPTPmMSV8WN003P00H5U9"
+);
+
 function App() {
+  const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : null;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (cart && cart.length > 0) {
+      cart.forEach((item) => {
+        // Dispatching actions inside forEach loop
+        dispatch(addToCart({ ...item, price: item.product_price }));
+        dispatch(getCartTotal());
+      });
+    }
+  }, [cart]); // Adding 'cart' as a dependency to useEffect
+
   return (
     <div>
       <ToastContainer
@@ -39,7 +63,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/cart"
+            element={
+              <Elements stripe={promise}>
+                <Cart />
+              </Elements>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/seller-login" element={<SellerLogin />} />
           <Route path="/contact" element={<Contact />} />
