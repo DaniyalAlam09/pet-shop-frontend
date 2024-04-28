@@ -300,16 +300,7 @@ export default function Cart() {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="">
-              <label htmlFor="fname">First Name:</label>
-              <input
-                type="text"
-                id="fname"
-                name="fname"
-                value={state.fname}
-                onChange={handleInputChange}
-              />
-            </div>
+
             <div className="">
               <label htmlFor="fname">Last Name:</label>
               <input
@@ -353,7 +344,7 @@ export default function Cart() {
             <div className="">
               <label htmlFor="fname">City:</label>
               <input
-                type="number"
+                type="text"
                 id="city"
                 name="city"
                 value={state.city}

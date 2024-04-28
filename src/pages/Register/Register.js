@@ -22,7 +22,6 @@ function Register() {
             localStorage.setItem("user", JSON.stringify(response.data.user));
             localStorage.setItem('isAdmin', false);
             window.location.replace('../user/profile')
-            window.location.reload()
         } catch (error) {
             toast.error(error.response.data.message);
             console.error("Registration failed:", error.response.data);

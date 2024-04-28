@@ -65,14 +65,12 @@ const ManageOrders = () => {
         };
 
         axios
-            .put("http://localhost:4000/shopowners/update/" + id, formData, config)
-
+            .put("http://localhost:4000/order/update/" + id, formData, config)
             .then((res) => {
                 if (res.status === 200) {
-                    toast("Status Updated");
-                    // return response.json();
+                    toast.success("Status Updated");
                 } else {
-                    console.log("SOMETHING WENT WRONG");
+                    toast.error("Something went wrong")
                 }
             })
             .catch((err) => {

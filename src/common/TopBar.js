@@ -18,17 +18,22 @@ export default function TopBar() {
                   {top.text}
                 </Link>
               ))}
-              {(!isAdmin && !user) ? (
-                <Link to='/seller-login' className="text-body mr-3" >
-                  Seller Login
-                </Link >
-              ) : <Link className="text-body mr-3" to='..//admin/my-products'>
-                Profile
-              </Link>}
+              {!user && (
+                <>
+                  {(!isAdmin || (isAdmin == 'false')) ? (
+                    <Link to='/seller-login' className="text-body mr-3" >
+                      Seller Login
+                    </Link >
+                  ) : <Link className="text-body mr-3" to='..//admin/my-products'>
+                    Profile
+                  </Link>}
+
+                </>
+              )}
             </div>
           </div>
           <div className="col-lg-6 text-center text-lg-right">
-            {!isAdmin && ((
+            {(!isAdmin || (isAdmin == 'false')) && ((
               <div className="d-inline-flex align-items-center">
                 {user ? (
                   <>

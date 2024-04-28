@@ -1,13 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addToCart, getCartTotal, updateQuantity } from "../../redux/CartSlice";
 import { toast } from "react-toastify";
 
 function ProductPage() {
     const { id } = useParams();
     const [product, setProduct] = React.useState(null);
+    const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+    console.log("user", user)
+    const navigate = useNavigate()
 
     const dispatch = useDispatch();
     const [qty, setQty] = useState(1);
@@ -37,6 +40,60 @@ function ProductPage() {
     React.useEffect(() => {
         getProduct();
     }, []);
+
+    const [state, setState] = useState({
+        comment: "",
+        name: user ? user.firstName + ' ' + user.lastName : '',
+        rating: "",
+    });
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (e) => {
+        setState({ ...state, [e.target.name]: e.target.value });
+        console.log(state);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("name", state.name);
+        formData.append("comment", state.comment);
+        formData.append("rating", value);
+        formData.append("userid", user._id);
+        // formData.append("product_sku", state.color);
+        const config = {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json",
+            },
+            withCredentials: true,
+        };
+
+        axios
+            .post(`http://localhost:4000/shops/review/${id}`, formData, config)
+            .then((response) => {
+                if (response.data.message === "Review added") {
+                    navigate(0);
+                    console.log(response.data.message);
+                    toast.success("Review added");
+                } else if (response.data.message === "First Buy this Product") {
+                    toast.error("First Buy this Product To Review");
+                } else if (response.data.message === "Already Reviewed") {
+                    toast.error("Already Reviewed");
+                } else if (
+                    response.data.message === "You Can't Review your Own Product"
+                ) {
+                    toast.error("You Can't Review your Own Product");
+                }
+            })
+            .catch((error) => {
+                if (error.response.data === "Please Login First") {
+                    toast.error("Please Login First");
+                } else {
+                    toast.error(error.response.data.message);
+                }
+            });
+    };
 
     return (
         <section class="py-5">
@@ -143,6 +200,74 @@ function ProductPage() {
                                 </button>
                             </div>
                         </main>
+                        <div className="">
+                            <div className="preview">
+                                <h2>Reviews</h2>
+                                {(product.reviews?.length > 0) ? product.reviews?.map((product) => (
+                                    <div>
+                                        <div className="">
+                                            <div className="">
+                                                <div>
+                                                    <p className="mt-3 ml-4 review-name">{`${product.name}`}</p>
+                                                </div>
+                                                <div className="d-flex justify-content-start">
+                                                    <div className="ml">
+                                                        <p className="ml-5 comment">{`${product.comment}`}</p>
+                                                    </div>
+                                                    <div className="">
+                                                        {/* <Rating
+                                                            className="ml-5"
+                                                            size="small"
+                                                            readOnly
+                                                            value={product.rating}
+                                                        /> */}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )) : (
+                                    'NO Reviews'
+                                )}
+                            </div>
+                            {/* ENter Reviews */}
+                            {user && (
+
+                                <div className="">
+                                    <h3>Enter Your Review</h3>
+                                    <form style={{ width: "100%" }} onSubmit={handleSubmit} className="">
+                                        <div className="">
+
+                                            <label for="inputZip" className="form-label">
+                                                Enter Your Review
+                                            </label>
+                                            <textarea
+                                                name="comment"
+                                                type="text"
+                                                className="form-control"
+                                                rows="3"
+                                                onChange={handleChange}
+                                                value={state.comment}
+                                            ></textarea>
+                                            {/* <Rating
+                        name="simple-controlled"
+                        value={value}
+                        onChange={(event, newValue) => {
+                          setValue(newValue);
+                        }}
+                      /> */}
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            className="buttons btn   btn-primary mt-3"
+                                        >
+                                            Post
+                                        </button>
+                                    </form>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 ) : (
                     "No Product Found"
