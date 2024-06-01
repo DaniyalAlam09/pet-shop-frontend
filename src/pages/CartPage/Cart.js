@@ -58,6 +58,13 @@ export default function Cart() {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
+  const handlePhoneNoChange = (e) => {
+    const value = e.target.value;
+    // Allow only digits (0-9)
+    if (/^\d*$/.test(value)) {
+      setState({ ...state, [e.target.name]: value });
+    };
+  }
   const emptyCartMsg = (
     <h4 className="container text-center p-4">Your Cart is Empty</h4>
   );
@@ -321,11 +328,11 @@ export default function Cart() {
             <div style={{ display: "flex", justifyContent: "space-between" }} className="form-outline mb-4">
               <label className="form-label required-label" htmlFor="fname">Phone No:</label>
               <input
-                type="number"
+                type="tel"
                 id="phoneNo"
                 name="phoneNo"
                 value={state.phoneNo}
-                onChange={handleInputChange}
+                onChange={handlePhoneNoChange}
               />
             </div>
             <div style={{ display: "flex", justifyContent: "space-between" }} className="form-outline mb-4">

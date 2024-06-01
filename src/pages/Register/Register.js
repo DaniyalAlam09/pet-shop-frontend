@@ -12,6 +12,14 @@ function Register() {
     const [phoneNo, setPhoneNo] = useState("");
     const [city, setCity] = useState("");
 
+    const handlePhoneNoChange = (e) => {
+        const value = e.target.value;
+        // Allow only digits (0-9)
+        if (/^\d*$/.test(value)) {
+            setPhoneNo(value);
+        }
+    };
+
     const handleRegister = async () => {
         try {
             const response = await axios.post(
@@ -143,12 +151,12 @@ function Register() {
                                                 </label>
                                                 <input
                                                     value={phoneNo}
-                                                    onChange={(e) => setPhoneNo(e.target.value)}
-                                                    type="text"
+                                                    onChange={handlePhoneNoChange}
+                                                    type="tel"
                                                     id="phoneNo"
                                                     className="form-control form-control-lg"
+                                                    pattern="\d*"
                                                     required
-
                                                 />
                                             </div>
 

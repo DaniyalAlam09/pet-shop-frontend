@@ -88,7 +88,6 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="orders" element={<Order />} />
           </Route>
-
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

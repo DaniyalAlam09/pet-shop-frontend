@@ -15,7 +15,30 @@ function ProductUpload() {
     const [productImage, setProductImage] = useState(null);
     const [error, setError] = useState('');
     const { catagories } = useCatagories();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const validateInputs = () => {
+        const namePattern = /^[a-zA-Z\s]+$/;
+        const numberPattern = /^[0-9]+$/;
+
+        if (!namePattern.test(productName)) {
+            setError('Product name should only contain alphabetic characters.');
+            return false;
+        }
+
+        if (!numberPattern.test(productPrice) || !numberPattern.test(stock) || !numberPattern.test(sku)) {
+            setError('Price, stock, and SKU should only contain numeric characters.');
+            return false;
+        }
+
+        if (discount && (!numberPattern.test(discount) || Number(discount) >= Number(productPrice))) {
+            setError('Discounted price should be numeric and less than the product price.');
+            return false;
+        }
+
+        setError('');
+        return true;
+    };
 
     const handleInputChange = (event) => {
         const { id, value } = event.target;
@@ -61,6 +84,10 @@ function ProductUpload() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!validateInputs()) {
+            return;
+        }
+
         const formData = new FormData();
         formData.append('name', productName);
         formData.append('price', productPrice);
@@ -79,12 +106,10 @@ function ProductUpload() {
                 }
             });
             toast.success('Product Uploaded');
-            navigate('../../admin/my-products')
-            // Handle success
+            navigate('../../admin/my-products');
         } catch (error) {
             console.error('Error:', error);
             toast.error('Error uploading product');
-            // Handle error
         }
     };
 
@@ -122,16 +147,14 @@ function ProductUpload() {
                             <label htmlFor="productCategory" className="required-label">Category</label>
                             <select required className="form-control" id="productCategory" value={productCategory} onChange={handleInputChange}>
                                 <option value=''>Select Category</option>
-                                {catagories.map
-                                    (
-                                        category => (
-
-                                            <option value={category.slug}>{category.name}</option>
-                                        )
-                                    )}
+                                {catagories.map(
+                                    category => (
+                                        <option key={category.slug} value={category.slug}>{category.name}</option>
+                                    )
+                                )}
                             </select>
                         </div>
-                        <div className="form-group" >
+                        <div className="form-group">
                             <label htmlFor="productImage" className="required-label">Upload Image</label>
                             <div className="custom-file">
                                 <input required type="file" className="custom-file-input" id="productImage" onChange={handleImageChange} accept="image/png, image/jpeg, image/jpg" />
