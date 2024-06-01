@@ -13,7 +13,7 @@ function About() {
                             <div class="col-12 col-xl-11">
                                 <h2 class="h1 mb-3">Who Are We?</h2>
                                 <p class="lead fs-4 text-secondary mb-3">We help people to build incredible brands and superior products. Our perspective is to furnish outstanding captivating services.</p>
-                                <p class="mb-5">Nullam gravida orci ac luctus molestie. Fusce finibus congue erat, non aliquam magna tincidunt at. Aenean lacinia arcu ex, sed pharetra nibh porta a. Curabitur vel consequat nibh, ac interdum nisl. Nunc pulvinar nec massa vitae sollicitudin.</p>
+                                <p class="mb-5">What we sell: Cat Food, Dog Food, Cat Litter, Litter Boxes & Trays, Leashes, Chains, Dog & Cat Collars, Cat Houses, Carrying Boxes, Jet Boxes, Wet Food, Jellies, Toys for Cats & Dogs</p>
                                 <div class="row gy-4 gy-md-0 gx-xxl-5X">
                                     <div class="col-12 col-md-6">
                                         <div class="d-flex">

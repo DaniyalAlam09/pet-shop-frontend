@@ -61,83 +61,95 @@ function Register() {
                                             >
                                                 Register yourself
                                             </h5>
-
                                             <div className="form-outline mb-4">
-                                                <input
-                                                    value={email}
-                                                    onChange={(e) => setEmail(e.target.value)}
-                                                    type="email"
-                                                    id="email"
-                                                    className="form-control form-control-lg"
-                                                />
-                                                <label className="form-label" htmlFor="email">
-                                                    Email address
+                                                <label className="required-label form-label" htmlFor="firstName">
+                                                    First Name
                                                 </label>
-                                            </div>
-
-                                            <div className="form-outline mb-4">
-                                                <input
-                                                    value={password}
-                                                    onChange={(e) => setPassword(e.target.value)}
-                                                    type="password"
-                                                    id="password"
-                                                    className="form-control form-control-lg"
-                                                />
-                                                <label className="form-label" htmlFor="password">
-                                                    Password
-                                                </label>
-                                            </div>
-
-                                            {/* Additional Fields */}
-
-                                            <div className="form-outline mb-4">
                                                 <input
                                                     value={firstName}
                                                     onChange={(e) => setFirstName(e.target.value)}
                                                     type="text"
                                                     id="firstName"
                                                     className="form-control form-control-lg"
+                                                    required
                                                 />
-                                                <label className="form-label" htmlFor="firstName">
-                                                    First Name
-                                                </label>
                                             </div>
                                             <div className="form-outline mb-4">
+                                                <label className="required-label form-label" htmlFor="firstName">
+                                                    Last Name
+                                                </label>
                                                 <input
                                                     value={lastName}
                                                     onChange={(e) => setLastName(e.target.value)}
                                                     type="text"
                                                     id="lastName"
                                                     className="form-control form-control-lg"
+                                                    required
+
                                                 />
-                                                <label className="form-label" htmlFor="firstName">
-                                                    Last Name
-                                                </label>
                                             </div>
+
                                             <div className="form-outline mb-4">
+                                                <label className="required-label form-label" htmlFor="email">
+                                                    Email address
+                                                </label>
+                                                <input
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    type="email"
+                                                    id="email"
+                                                    className="form-control form-control-lg"
+                                                    required
+
+                                                />
+                                            </div>
+
+                                            <div className="form-outline mb-4">
+                                                <label className="required-label form-label" htmlFor="password">
+                                                    Password
+                                                </label>
+                                                <input
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                    type="password"
+                                                    id="password"
+                                                    className="form-control form-control-lg"
+                                                    required
+
+                                                />
+                                            </div>
+
+                                            {/* Additional Fields */}
+
+
+                                            <div className="form-outline mb-4">
+                                                <label className="required-label form-label" htmlFor="firstName">
+                                                    Address
+                                                </label>
                                                 <input
                                                     value={address}
                                                     onChange={(e) => setAddress(e.target.value)}
                                                     type="text"
                                                     id="address"
                                                     className="form-control form-control-lg"
+                                                    required
+
                                                 />
-                                                <label className="form-label" htmlFor="firstName">
-                                                    Address
-                                                </label>
                                             </div>
 
                                             <div className="form-outline mb-4">
+                                                <label className="required-label form-label" htmlFor="firstName">
+                                                    Phone no
+                                                </label>
                                                 <input
                                                     value={phoneNo}
                                                     onChange={(e) => setPhoneNo(e.target.value)}
                                                     type="text"
                                                     id="phoneNo"
                                                     className="form-control form-control-lg"
+                                                    required
+
                                                 />
-                                                <label className="form-label" htmlFor="firstName">
-                                                    Phone no
-                                                </label>
                                             </div>
 
                                             {/* Repeat the above pattern for the other fields */}

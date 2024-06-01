@@ -35,6 +35,7 @@ const Order = () => {
                             {/* <th>Sr #</th> */}
                             <th>Order ID</th>
                             <th>Product</th>
+                            <th>Image</th>
                             <th>Order Status</th>
                             <th>Bill</th>
                             <th>Date</th>
@@ -52,14 +53,15 @@ const Order = () => {
                                             to={`../../product/${ord.productId}`}
                                             style={{ color: "#0C8AA0" }}
                                         >
-                                            <img
-                                                src={ord.productImg ? ('http://localhost:4000/' + ord.productImg?.replace('public\\', '').replace(/\\/g, '/')) : "../assets/img/carousel-1.jpg"}
-                                                style={{ height: "3em", marginTop: "-5px" }}
-                                            />
+
                                             {ord.productName}{" "}
                                         </Link>
                                     </td>
 
+                                    <td>  <img
+                                        src={ord.productImg ? ('http://localhost:4000/' + ord.productImg?.replace('public\\', '').replace(/\\/g, '/')) : "../assets/img/carousel-1.jpg"}
+                                        style={{ height: "3em", marginTop: "-5px" }}
+                                    /></td>
                                     <td>{ord.status}</td>
                                     <td>{ord.bill}</td>
                                     <td>{moment(ord.date_added).format("MMM Do YY")}</td>
@@ -81,7 +83,7 @@ const Order = () => {
                                         <img
                                             // class="img-thumbnail "
                                             style={{ width: "40%" }}
-                                            src="/images/No.png"
+                                            src="https://cdn.dribbble.com/users/429792/screenshots/3649946/no_order.png"
                                             className="col-md-6"
                                         />
                                         <div className="col-md-6">

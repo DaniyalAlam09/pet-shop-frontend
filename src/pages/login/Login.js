@@ -60,6 +60,9 @@ function Login() {
                                             </h5>
 
                                             <div className="form-outline mb-4">
+                                                <label className="form-label required-label" htmlFor="form2Example17">
+                                                    Email address
+                                                </label>
                                                 <input
                                                     type="email"
                                                     id="form2Example17"
@@ -67,12 +70,12 @@ function Login() {
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
                                                 />
-                                                <label className="form-label" htmlFor="form2Example17">
-                                                    Email address
-                                                </label>
                                             </div>
 
                                             <div className="form-outline mb-4">
+                                                <label className="required-label form-label" htmlFor="form2Example27">
+                                                    Password
+                                                </label>
                                                 <input
                                                     type="password"
                                                     id="form2Example27"
@@ -80,9 +83,6 @@ function Login() {
                                                     value={password}
                                                     onChange={(e) => setPassword(e.target.value)}
                                                 />
-                                                <label className="form-label" htmlFor="form2Example27">
-                                                    Password
-                                                </label>
                                             </div>
 
                                             <div className="pt-1 mb-4">

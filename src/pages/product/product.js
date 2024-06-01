@@ -9,7 +9,6 @@ function ProductPage() {
     const { id } = useParams();
     const [product, setProduct] = React.useState(null);
     const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
-    console.log("user", user)
     const navigate = useNavigate()
 
     const dispatch = useDispatch();
@@ -131,8 +130,8 @@ function ProductPage() {
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fas fa-star-half-alt"></i>
-                                        <span class="ms-1">{product.reviews.length / 5}</span>
                                     </div>
+                                    <span class="ms-1">{product.reviews.length} Reviews</span>
 
                                     <span class="ml-5 text-success ms-2">
                                         {product.product_stoke} In stock
@@ -140,8 +139,8 @@ function ProductPage() {
                                 </div>
 
                                 <div class="mb-3">
-                                    <span class="h5">$75.00</span>
-                                    <span class="text-muted">/per box</span>
+                                    <span class="h5">${product.discounted_price || product.price}</span>
+                                    <span class="text-muted">/per peice</span>
                                 </div>
 
                                 <p>{product.product_description}</p>
@@ -200,7 +199,7 @@ function ProductPage() {
                                 </button>
                             </div>
                         </main>
-                        <div className="">
+                        <div style={{ width: "100%" }} className="">
                             <div className="preview">
                                 <h2>Reviews</h2>
                                 {(product.reviews?.length > 0) ? product.reviews?.map((product) => (
@@ -208,7 +207,11 @@ function ProductPage() {
                                         <div className="">
                                             <div className="">
                                                 <div>
-                                                    <p className="mt-3 ml-4 review-name">{`${product.name}`}</p>
+                                                    <p className="mt-3 ml-4 review-name">
+                                                        <b >
+                                                            {`${product.name}`}
+                                                        </b>
+                                                    </p>
                                                 </div>
                                                 <div className="d-flex justify-content-start">
                                                     <div className="ml">
@@ -227,13 +230,13 @@ function ProductPage() {
                                         </div>
                                     </div>
                                 )) : (
-                                    'NO Reviews'
+                                    'No Reviews yet'
                                 )}
                             </div>
                             {/* ENter Reviews */}
                             {user && (
 
-                                <div className="">
+                                <div className="mt-5">
                                     <h3>Enter Your Review</h3>
                                     <form style={{ width: "100%" }} onSubmit={handleSubmit} className="">
                                         <div className="">

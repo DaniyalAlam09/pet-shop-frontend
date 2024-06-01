@@ -31,12 +31,12 @@ function SellerLogin() {
                                 <form style={{ width: "23rem" }} onSubmit={handleSubmit}>
                                     <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>Log in</h3>
                                     <div className="form-outline mb-4">
+                                        <label className="required-label form-label" htmlFor="username">Username</label>
                                         <input type="text" id="username" name="username" className="form-control form-control-lg" />
-                                        <label className="form-label" htmlFor="username">Username</label>
                                     </div>
                                     <div className="form-outline mb-4">
+                                        <label className=" required-label form-label" htmlFor="password">Password</label>
                                         <input type="password" id="password" name="password" className="form-control form-control-lg" />
-                                        <label className="form-label" htmlFor="password">Password</label>
                                     </div>
                                     <div className="pt-1 mb-4">
                                         <button className="btn btn-dark btn-lg btn-block" type="submit">Login</button>

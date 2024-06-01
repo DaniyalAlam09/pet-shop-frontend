@@ -1,6 +1,7 @@
 import React from "react";
 import { banner, carousel } from "../data/Data";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   const settings = [
@@ -43,12 +44,12 @@ export default function Banner() {
                           <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
                             {val.description}
                           </p>
-                          <a
+                          <Link
                             className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                            href="#"
+                            to='/shop'
                           >
                             {val.btn}
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -64,9 +65,9 @@ export default function Banner() {
                 <div className="offer-text">
                   <h6 className="text-white text-uppercase">{item.discount}</h6>
                   <h3 className="text-white mb-3">{item.title}</h3>
-                  <a href="" className="btn btn-primary">
+                  <Link to='/shop' className="btn btn-primary">
                     {item.btn}
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}

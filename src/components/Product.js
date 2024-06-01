@@ -21,19 +21,32 @@ export default function Product({ productType }) {
   };
 
   const getProducts = () => {
-    axios
-      .get("http://localhost:4000/shops")
-      .then((res) => {
-        if (productType === 'featured') {
-          setProducts(res.data.products.reverse().slice(0, 8));
-        } else if (productType === 'sort') {
-          setProducts(res.data.products.sort((a, b) => a.product_price - b.product_price).slice(0, 8));
+    if (productType !== 'good') {
+      axios
+        .get("http://localhost:4000/shops")
+        .then((res) => {
+          if (productType === 'featured') {
+            setProducts(res.data.products.reverse().slice(0, 8));
+          } else if (productType === 'sort') {
+            setProducts(res.data.products.sort((a, b) => a.product_price - b.product_price).slice(0, 8));
 
-        }
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-      });
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
+    } else {
+      axios
+        .post("http://localhost:4000/shops/sentiment")
+        .then((res) => {
+          setProducts(res.data.pro.slice(0, 4));
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
+
+    }
+
   };
   useEffect(() => {
     getProducts();
@@ -43,12 +56,11 @@ export default function Product({ productType }) {
 
     <>
       <div className="container-fluid pt-5 pb-3">
-        <h4 className="px-xl-5 m-5">{productType === 'featured' ? 'New Arival' : productType === 'sort' && 'Featured Products'}</h4>
+        <h4 className="px-xl-5 m-5">{productType === 'featured' ? 'New Arival' : productType === 'sort' ? 'Featured Products' : productType === 'good' && 'Hot Collection'}</h4>
         <div className="row px-xl-5">
           {products.map((item, index) => {
             let newPath = item.product_image?.replace('public\\', '').replace(/\\/g, '/');
             return (
-
               <div div className="col-lg-3 col-md-4 col-sm-6 pb-1" key={index} >
                 <div className="product-item bg-light mb-4">
                   <div className="product-img position-relative overflow-hidden">

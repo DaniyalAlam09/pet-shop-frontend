@@ -10085,6 +10085,8 @@ h6 {
 
 .product-item .product-img img {
   transition: 0.5s;
+  object-fit: contain;
+  height: 200px;
 }
 
 .product-item:hover .product-img img {
@@ -10237,6 +10239,8 @@ h6 {
   max-width: 500px;
   width: 100%;
   padding: 40px 15px;
+  height: 300px;
+  overflow: auto;
 }
 .textCenter {
   text-align: center;

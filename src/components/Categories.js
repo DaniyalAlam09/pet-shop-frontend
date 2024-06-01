@@ -1,6 +1,7 @@
 import React from "react";
 import { category } from "../data/Data";
 import { useCatagories } from "../context/catagoriesProvider";
+import { Link } from "react-router-dom";
 
 export default function Categories() {
   const { catagories } = useCatagories()
@@ -11,7 +12,7 @@ export default function Categories() {
         <div className="row px-xl-5 pb-3">
           {catagories.map((item, index) => (
             <div className="col-lg-3 col-md-4 col-sm-6 pb-1" key={index}>
-              <a className="text-decoration-none" href="">
+              <Link to={`/shop?category=${item.slug}`} className="text-decoration-none">
                 <div className="cat-item d-flex align-items-center mb-4">
                   <div
                     className="overflow-hidden"
@@ -24,7 +25,7 @@ export default function Categories() {
                     {/* <small className="text-body">{item.quantity}</small> */}
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </div>

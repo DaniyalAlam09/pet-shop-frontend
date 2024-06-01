@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Heading from "../../common/Heading";
 import { useDispatch } from "react-redux";
 import { addToCart, getCartTotal } from "../../redux/CartSlice";
 import axios from "axios";
+import { useCatagories } from "../../context/catagoriesProvider";
 
 export default function Shop() {
   const dispatch = useDispatch();
+  const location = useLocation()
   const [qty, setQty] = useState(1);
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const urlParams = new URLSearchParams(location.search);
+  const category = urlParams.get('category')
+  const { catagories } = useCatagories();
 
   const handleAddToCart = (item) => {
     let totalPrice = qty * item.discounted_price || item.price;
@@ -23,9 +28,13 @@ export default function Shop() {
     dispatch(getCartTotal());
   };
 
-  const getProducts = () => {
+  const getProducts = (category) => {
+    const url = category
+      ? `http://localhost:4000/shops?category=${category}`
+      : `http://localhost:4000/shops`;
+
     axios
-      .get("http://localhost:4000/shops")
+      .get(url)
       .then((res) => {
         setProducts(res.data.products);
       })
@@ -33,9 +42,9 @@ export default function Shop() {
         console.log(err.response.data.message);
       });
   };
-
+  ;
   useEffect(() => {
-    getProducts();
+    getProducts(category);
   }, []);
 
   const filteredProducts = products.filter((product) =>
@@ -47,7 +56,7 @@ export default function Shop() {
       <Heading title="Home" subtitle="Shop" />
       <div className="container-fluid">
         <div className="row px-xl-5">
-          <Sidebar setProducts={setProducts} />
+          <Sidebar setProducts={setProducts} category={category} />
           <div className="col-lg-9 col-md-8">
             <div className="row pb-3">
               <div className="col-12 pb-1">
@@ -68,7 +77,7 @@ export default function Shop() {
                       </div>
                     </div>
                   </form>
-                  <div className="ml-2">
+                  {/* <div className="ml-2">
                     <div className="btn-group">
                       <button
                         type="button"
@@ -78,7 +87,7 @@ export default function Shop() {
                         Sorting
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               {filteredProducts.length > 0 ? (

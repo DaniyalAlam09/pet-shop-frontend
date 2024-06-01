@@ -287,11 +287,11 @@ export default function Cart() {
           setConfirmationModal(false);
         }}
       >
-        <div className="popup-content">
+        <div>
           <form>
             <h3>Confirm Your Order</h3>
-            <div className="">
-              <label htmlFor="fname">First Name:</label>
+            <div style={{ display: "flex", justifyContent: "space-between" }} className="form-outline mb-4">
+              <label className="form-label required-label" htmlFor="fname">First Name:</label>
               <input
                 type="text"
                 id="fname"
@@ -301,8 +301,8 @@ export default function Cart() {
               />
             </div>
 
-            <div className="">
-              <label htmlFor="fname">Last Name:</label>
+            <div style={{ display: "flex", justifyContent: "space-between" }} className="form-outline mb-4">
+              <label className="form-label required-label" htmlFor="fname">Last Name:</label>
               <input
                 type="text"
                 id="lname"
@@ -311,8 +311,8 @@ export default function Cart() {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="">
-              <label htmlFor="fname">Email:</label>
+            <div style={{ display: "flex", justifyContent: "space-between" }} className="form-outline mb-4">
+              <label className="form-label required-label" htmlFor="fname">Email:</label>
               <input
                 type="email"
                 id="email"
@@ -321,8 +321,8 @@ export default function Cart() {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="">
-              <label htmlFor="fname">Phone No:</label>
+            <div style={{ display: "flex", justifyContent: "space-between" }} className="form-outline mb-4">
+              <label className="form-label required-label" htmlFor="fname">Phone No:</label>
               <input
                 type="number"
                 id="phoneNo"
@@ -331,8 +331,8 @@ export default function Cart() {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="">
-              <label htmlFor="fname">Address:</label>
+            <div style={{ display: "flex", justifyContent: "space-between" }} className="form-outline mb-4">
+              <label className="form-label required-label" htmlFor="fname">Address:</label>
               <input
                 type="text"
                 id="address"
@@ -341,8 +341,8 @@ export default function Cart() {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="">
-              <label htmlFor="fname">City:</label>
+            <div style={{ display: "flex", justifyContent: "space-between" }} className="form-outline mb-4">
+              <label className="form-label required-label" htmlFor="fname">City:</label>
               <input
                 type="text"
                 id="city"
@@ -360,6 +360,9 @@ export default function Cart() {
               onClick={(e) => {
                 confirmPayment(e);
               }}
+              disabled={!stripe ||
+                !elements || load || !state.address || !state.city || !state.fname || !state.lname || !state.email || !state.phoneNo
+              }
             >
               Confirm Order
             </button>

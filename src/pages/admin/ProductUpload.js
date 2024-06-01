@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useCatagories } from '../../context/catagoriesProvider';
+import { useNavigate } from 'react-router-dom';
 
 function ProductUpload() {
     const [productName, setProductName] = useState('');
@@ -9,9 +11,11 @@ function ProductUpload() {
     const [productDescription, setProductDescription] = useState('');
     const [stock, setStock] = useState('');
     const [sku, setSku] = useState('');
-    const [productCategory, setProductCategory] = useState('1');
+    const [productCategory, setProductCategory] = useState('');
     const [productImage, setProductImage] = useState(null);
     const [error, setError] = useState('');
+    const { catagories } = useCatagories();
+    const navigate = useNavigate()
 
     const handleInputChange = (event) => {
         const { id, value } = event.target;
@@ -75,6 +79,7 @@ function ProductUpload() {
                 }
             });
             toast.success('Product Uploaded');
+            navigate('../../admin/my-products')
             // Handle success
         } catch (error) {
             console.error('Error:', error);
@@ -94,37 +99,42 @@ function ProductUpload() {
                             <input type="text" className="form-control" id="productName" placeholder="Enter product name" value={productName} onChange={handleInputChange} required />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="productPrice">Price</label>
-                            <input type="text" className="form-control" id="productPrice" placeholder="Enter product price" value={productPrice} onChange={handleInputChange} />
+                            <label htmlFor="productPrice" className="required-label">Price</label>
+                            <input type="text" className="form-control" id="productPrice" placeholder="Enter product price" value={productPrice} onChange={handleInputChange} required />
                         </div>
                         <div className="form-group">
                             <label htmlFor="discount">Discounted Price</label>
                             <input type="text" className="form-control" id="discount" placeholder="Enter discounted price" value={discount} onChange={handleInputChange} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="sku">SKU</label>
-                            <input type="text" className="form-control" id="sku" placeholder="Enter SKU" value={sku} onChange={handleInputChange} />
+                            <label htmlFor="sku" className="required-label">SKU</label>
+                            <input required type="text" className="form-control" id="sku" placeholder="Enter SKU" value={sku} onChange={handleInputChange} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="stock">Stock</label>
-                            <input type="text" className="form-control" id="stock" placeholder="Enter stock" value={stock} onChange={handleInputChange} />
+                            <label htmlFor="stock" className="required-label">Stock</label>
+                            <input required type="text" className="form-control" id="stock" placeholder="Enter stock" value={stock} onChange={handleInputChange} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="productDescription">Description</label>
-                            <textarea className="form-control" id="productDescription" rows="3" placeholder="Enter product description" value={productDescription} onChange={handleInputChange}></textarea>
+                            <label htmlFor="productDescription" className="required-label">Description</label>
+                            <textarea required className="form-control" id="productDescription" rows="3" placeholder="Enter product description" value={productDescription} onChange={handleInputChange}></textarea>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="productCategory">Category</label>
-                            <select className="form-control" id="productCategory" value={productCategory} onChange={handleInputChange}>
-                                <option value="1">Category 1</option>
-                                <option value="2">Category 2</option>
-                                <option value="3">Category 3</option>
+                            <label htmlFor="productCategory" className="required-label">Category</label>
+                            <select required className="form-control" id="productCategory" value={productCategory} onChange={handleInputChange}>
+                                <option value=''>Select Category</option>
+                                {catagories.map
+                                    (
+                                        category => (
+
+                                            <option value={category.slug}>{category.name}</option>
+                                        )
+                                    )}
                             </select>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="productImage">Upload Image</label>
+                        <div className="form-group" >
+                            <label htmlFor="productImage" className="required-label">Upload Image</label>
                             <div className="custom-file">
-                                <input type="file" className="custom-file-input" id="productImage" onChange={handleImageChange} accept="image/png, image/jpeg, image/jpg" />
+                                <input required type="file" className="custom-file-input" id="productImage" onChange={handleImageChange} accept="image/png, image/jpeg, image/jpg" />
                                 <label className="custom-file-label" htmlFor="productImage">Choose file</label>
                             </div>
                             {productImage && <img className='uploadedImage' src={URL.createObjectURL(productImage)} alt="Preview" />}

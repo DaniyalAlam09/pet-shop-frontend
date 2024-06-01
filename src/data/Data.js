@@ -296,15 +296,11 @@ export const carousel = [
 export const footerTouch = [
   {
     icon: <i className="fa fa-map-marker-alt text-primary mr-3"></i>,
-    contact: "123 Street, New York, USA",
+    contact: "Lahore Pakistan",
   },
   {
     icon: <i className="fa fa-envelope text-primary mr-3"></i>,
-    contact: "info@example.com",
-  },
-  {
-    icon: <i className="fa fa-phone-alt text-primary mr-3"></i>,
-    contact: "+012 345 67890",
+    contact: "petshop@gmail.com",
   },
 ];
 
@@ -313,10 +309,7 @@ export const footer = [
     id: 1,
     header: "Quick Shop",
   },
-  {
-    id: 2,
-    header: "My Account",
-  },
+
 ];
 
 export const sidebar = [

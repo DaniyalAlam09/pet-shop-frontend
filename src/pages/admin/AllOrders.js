@@ -34,7 +34,7 @@ const ManageOrders = () => {
                 userDetails();
             })
             .catch((err) => {
-                console.log(err.response.data.message);
+                console.log(err);
             });
     }, []);
     const userDetails = () => {
@@ -109,7 +109,7 @@ const ManageOrders = () => {
                                     <td>{moment(ord.date_added).format("MMM Do YY")}</td>
                                     <td>
                                         <Link
-                                            to={`../../singleProduct/${ord.productId}/${ord.shopOwnerId}`}
+                                            to={`../../product/${ord.productId}`}
                                             style={{ color: "#0C8AA0" }}
                                         >
                                             {ord.productName}

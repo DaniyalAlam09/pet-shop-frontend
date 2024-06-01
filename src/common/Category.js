@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { category } from "../data/Data";
+import { Link, useNavigate } from "react-router-dom";
 import { useCatagories } from "../context/catagoriesProvider";
 
 export default function Category() {
   const [show, setShow] = useState(false);
-  const { catagories } = useCatagories()
+  const { catagories } = useCatagories();
+  const navigate = useNavigate();
 
   const [hover, setHover] = useState(false);
 
@@ -17,19 +17,24 @@ export default function Category() {
     setHover(null);
   };
 
+  const handleNavigate = (cat) => {
+    navigate(`/shop?category=${cat.slug}`);
+    setShow(false);
+  };
+
   return (
     <>
       <div className="col-lg-3 d-none d-lg-block">
-        <Link
+        <div
           onClick={() => setShow(!show)}
           className="btn d-flex align-items-center justify-content-between bg-primary w-100"
-          style={{ height: "65px", padding: "0 30px" }}
+          style={{ height: "65px", padding: "0 30px", cursor: "pointer" }}
         >
           <h6 className="text-dark m-0">
             <i className="fa fa-bars mr-2"></i>Categories
           </h6>
           <i className="fa fa-angle-down text-dark"></i>
-        </Link>
+        </div>
         <nav
           className={
             show
@@ -40,22 +45,18 @@ export default function Category() {
           style={{ width: "calc(100% - 30px)", zIndex: "999" }}
         >
           <div className="navbar-nav w-100">
-            {catagories.slice(0, 10).map((cat, index) => (
+            {catagories.map((cat, index) => (
               <div key={index}>
-                {cat.subCat ? (
-                  <div className="nav-item dropdown dropright">
-                    <Link
-                      className="nav-link dropdown-toggle"
-                      onMouseEnter={() => handleMouseEnter(cat.id)}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      {cat.name}
-                      <i className="fa fa-angle-right float-right mt-1"></i>
-                    </Link>
+                <div className="nav-item dropdown dropright">
+                  <div
+                    className="nav-link dropdown-toggle"
+                    onClick={() => handleNavigate(cat)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {cat.name}
+                    <i className="fa fa-angle-right float-right mt-1"></i>
                   </div>
-                ) : (
-                  <Link className="nav-item nav-link">{cat.name}</Link>
-                )}
+                </div>
               </div>
             ))}
           </div>

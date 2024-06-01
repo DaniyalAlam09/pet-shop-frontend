@@ -1,5 +1,6 @@
 import React from "react";
 import { banner } from "../data/Data";
+import { Link } from "react-router-dom";
 
 export default function Offers() {
   return (
@@ -15,9 +16,9 @@ export default function Offers() {
                     {offer.discount}
                   </h6>
                   <h3 className="text-white mb-3">{offer.title}</h3>
-                  <a href="" className="btn btn-primary">
+                  <Link to="/shop" className="btn btn-primary">
                     {offer.btn}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
