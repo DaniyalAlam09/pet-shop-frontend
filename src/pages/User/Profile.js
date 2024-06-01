@@ -18,7 +18,7 @@ const Profile = () => {
     return (
         <div style={styles.container}>
             <div style={styles.profileCard}>
-                <img src="https://via.placeholder.com/150" alt="Avatar" style={styles.avatar} />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDwmG52pVI5JZfn04j9gdtsd8pAGbqjjLswg&s" alt="Avatar" style={styles.avatar} />
                 <h2>{`${user.firstName} ${user.lastName}`}</h2>
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>Address:</strong> {user.address}</p>
