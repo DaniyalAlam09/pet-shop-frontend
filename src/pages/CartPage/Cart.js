@@ -116,9 +116,7 @@ export default function Cart() {
         { amount: totalAmounts },
         config
       );
-      console.log("response", response)
       const clientSecret = response.data.clientSecret;
-      console.log(clientSecret);
       if (!clientSecret) {
         toast.error("Failed to retrieve client secret");
         return;
@@ -147,7 +145,6 @@ export default function Cart() {
         return;
       }
 
-      console.log("Payment successful!");
       alert("Payment Received");
       makeOrder(); // You might need to pass an argument here if your makeOrder function requires one
       setLoad(false);

@@ -49,7 +49,6 @@ function ProductPage() {
 
     const handleChange = (e) => {
         setState({ ...state, [e.target.name]: e.target.value });
-        console.log(state);
     };
 
     const handleSubmit = (e) => {

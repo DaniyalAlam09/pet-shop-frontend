@@ -44,11 +44,25 @@ export default function Sidebar({ setProducts, category }) {
       });
   };
 
+  const getGoodProducts = () => {
+    axios
+      .post("http://localhost:4000/shops/sentiment")
+      .then((res) => {
+        setProducts(res.data.pro);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  }
   return (
     <>
       <div className="col-lg-3 col-md-4">
+        <h5 className="section-title position-relative text-uppercase mb-3">
+          <span className="bg-secondary pr-3">Good Review Products</span>
+        </h5>
+        <button onClick={getGoodProducts} style={{ width: "100%", margin: "5px" }} className="btn btn-primary">Good Review</button>
         {sidebar.map((val, index) => (
-          <div key={index}>
+          <div style={{ marginTop: "5px" }} key={index}>
             <h5 className="section-title position-relative text-uppercase mb-3">
               <span className="bg-secondary pr-3">{val.header}</span>
             </h5>
@@ -75,10 +89,10 @@ export default function Sidebar({ setProducts, category }) {
             </div>
           </div>
         ))}
+        <h5 style={{ marginTop: "5px" }} className="mt-4 section-title position-relative text-uppercase mb-3">
+          <span className="bg-secondary pr-3">Filter by Catagorey</span>
+        </h5>
         <div className="bg-light p-4 mb-30">
-          <h5 className="section-title position-relative text-uppercase mb-3">
-            <span className="bg-secondary pr-3">Filter by Catagorey</span>
-          </h5>
           <form>
             {catagories.map((item) => (
               <div className="custom-radio d-flex align-items-center justify-content-between mb-3" key={item.id}>

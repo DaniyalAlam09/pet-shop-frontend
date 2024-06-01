@@ -14,7 +14,6 @@ const ManageOrders = () => {
     });
     const handleChange = (e) => {
         setState({ ...state, [e.target.name]: e.target.value });
-        console.log(state);
     };
 
     React.useEffect(function () {
@@ -29,7 +28,6 @@ const ManageOrders = () => {
             .get("http://localhost:4000/order/allorders", config)
             .then((res) => {
                 setOrder(res.data);
-                console.log(res);
                 // setUserId(res.data.userId);
                 userDetails();
             })
@@ -43,7 +41,6 @@ const ManageOrders = () => {
                 .get(`http://localhost:4000/users/${use.userId}`)
                 .then((res) => {
                     setUser(res.data);
-                    console.log(res);
                 })
                 .catch((err) => {
                     console.log(err.response);
