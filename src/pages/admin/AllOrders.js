@@ -168,7 +168,7 @@ const ManageOrders = () => {
                                     <div className="d-flex align-items-center justify-content-around text-center">
                                         <img
                                             style={{ width: "40%" }}
-                                            src="/images/No.png"
+                                            src="https://cdn.dribbble.com/users/429792/screenshots/3649946/no_order.png"
                                         />
                                         <div>
                                             <h2>No Order Yet</h2>
