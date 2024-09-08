@@ -28,6 +28,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, getCartTotal } from "./redux/CartSlice";
 import ManageOrders from "./pages/admin/AllOrders";
+import BlogsPage from "./pages/Blogs/Blogs";
+import SingleBlogPage from "./pages/SingleBlog/SingleBlog";
+import ScrollToTop from "./common/ScrollToTop";
 const promise = loadStripe(
   "pk_test_51MO12UBGAZ3oqEpyMdmmANOskndSrDKAKjLGmH0Nz2zG5M8yJyuW2b02hm5XSGbJd6kWPDiUlYUaNIPTPmMSV8WN003P00H5U9"
 );
@@ -61,6 +64,7 @@ function App() {
       />
       <Router>
         <Header />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
@@ -73,6 +77,8 @@ function App() {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/blog/:id" element={<SingleBlogPage />} />
           <Route path="/seller-login" element={<SellerLogin />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />

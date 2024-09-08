@@ -52,7 +52,7 @@ export default function Header() {
                 id="navbarCollapse"
               >
                 <div className="navbar-nav mr-auto py-0">
-                  {nav.slice(0, 4).map((list, key) => (
+                  {nav.slice(0, 5).map((list, key) => (
                     <Link
                       to={list.path}
                       className="nav-item nav-link"

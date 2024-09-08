@@ -70,7 +70,7 @@ export default function Sidebar({ setProducts, category }) {
               <form>
                 {val.subItem.map((item, index) => (
                   <div
-                    className="custom-radio d-flex align-items-center justify-content-between mb-3"
+                    className="custom-radio d-flex align-items-center justify-content-start mb-3"
                     key={index}
                   >
                     <input
@@ -80,7 +80,7 @@ export default function Sidebar({ setProducts, category }) {
                       checked={selectedRadio == item.id}
                       onChange={handleRadioChange}
                     />
-                    <label className="">
+                    <label className="mt-2 ml-1">
                       {item.variety}
                     </label>
                   </div>
@@ -95,7 +95,7 @@ export default function Sidebar({ setProducts, category }) {
         <div className="bg-light p-4 mb-30">
           <form>
             {catagories.map((item) => (
-              <div className="custom-radio d-flex align-items-center justify-content-between mb-3" key={item.id}>
+              <div className="custom-radio d-flex align-items-center justify-content-start mb-3" key={item.id}>
                 <input
                   type="radio"
                   className=""
@@ -103,7 +103,7 @@ export default function Sidebar({ setProducts, category }) {
                   checked={selectedCatagorey == item.slug}
                   onChange={(e) => handleSelectedCatagoreyChange(e, item)}
                 />
-                <label className="">
+                <label className="mt-2 ml-1">
                   {item.name}
                 </label>
               </div>
